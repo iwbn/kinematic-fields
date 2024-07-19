@@ -12,7 +12,7 @@ https://github.com/user-attachments/assets/82252634-17b1-486b-bdd1-49e524036a27
 <img width="500" alt="kinematic" src="https://github.com/user-attachments/assets/9896ff36-dcc6-45e4-b9fa-8b0d5005d4ad">
 
 > **Regularizing Dynamic Radiance Fields with Kinematic Fields**  
-> [Woobin Im](https://iwbn.github.io), Geonho Cha, [Sebin Lee](https://sgvr.kaist.ac.kr/member/#post-2090), [Juhyeong Seon](https://sunjuhyeong.github.io/online-cv/), [Jumin Lee](https://zoomin-lee.github.io/), Dongyoon Wee, and [Sung-Eui Yoon](http://sgvr.kaist.ac.kr/~sungeui/)
+> [Woobin Im](https://iwbn.github.io), Geonho Cha, [Sebin Lee](https://sgvr.kaist.ac.kr/member/#post-2090), [Juhyeong Seon](https://sunjuhyeong.github.io/online-cv/), [Jumin Lee](https://zoomin-lee.github.io/), Dongyoon Wee, and [Sung-Eui Yoon](http://sgvr.kaist.ac.kr/~sungeui/)  
 > in ECCV 2024
 
 ## Code and weights coming soon
