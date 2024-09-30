@@ -1,0 +1,153 @@
+data:
+  N_vis: 10
+  datadir: data/nvidia_data_full/Balloon2-2/dense
+  datasampler_type: images
+  dataset_name: Nvidia_NDC
+
+  # define bbox
+  scene_bbox_max:
+  - 1.5
+  - 1.5
+  - 1.0 
+  scene_bbox_min: 
+  - -1.5
+  - -1.5
+  - -1.0 
+  ndc_bd_factor: 0.75
+
+expname: balloon2_ndvs_24f
+
+model:
+  model_name: HexPlaneSD_Flow
+
+  # Voxel size def
+  N_voxel_final: 27000000
+  N_voxel_init: 32768
+
+  # Sampling
+  time_grid_init: 23
+  time_grid_final: 47
+  multires_sample: True
+
+  # upsample list
+  upsample_list:
+  - 100
+  - 1000
+  - 2500
+  - 5000
+  - 10000
+  - 20000
+  - 30000
+  update_emptymask_list:
+  - 29000
+  
+  # network config
+  app_n_comp: [48, 12, 12]
+  app_featureC: 64
+  density_n_comp: [16, 4, 4]
+  fea2denseAct: relu
+
+  app_view_pe_begin: 35000
+
+  # flow-related scales
+  flowgrad_scale: 2.0
+  flow_scale: 0.02
+
+  # static network config
+  stapp_n_comp: [48, 12, 12]
+  stdensity_n_comp: [16, 4, 4]
+
+  # flow network config
+  flow_n_comp: [32, 16, 16]
+  flow_order: 3
+
+  # Depth median loss
+  depth_med_loss: true
+  depth_med_loss_weight: 0.005
+
+  # dist loss
+  dist_loss: true
+  dist_loss_begin: 1000
+  dist_loss_weight: 0.05
+
+  # dyst loss
+  dyst_entropy_loss_weight: 0.001
+  dyst_entropy_skewness: 2.0
+  dyst_entropy_loss_begin: 5000
+  st_entropy_loss_weight: 0.0
+
+  # flow regularizers
+  flow_cycle_reg_weight: 1e-2
+  static_flow_reg_weight: 1e-4
+  static_flow_loss_weight: 0.01
+
+  # 2d flow supervision
+  flow_loss_weight: 0.04
+  
+  # related to gradients
+  normal_reg_weight: 0.05
+  num_grad_res_scale: 1.0
+  num_hessian_samples: 100000
+  grad_res_multiplier: 2.0
+
+  # related to physics
+  phys_kinematic_integrity: 0.1
+  phys_higher_order_penalty: 1e-5
+  phys_transport: 1e-5
+  phys_rigidity: 1e-2
+
+  # time hops
+  init_timehop: 2.0
+  init_timeinter: 2.0
+  max_timehop: 3.0
+  max_timeinter: 3.0
+  
+  # photo weights
+  photo_weight: 0.5
+  photo_inter_weight: 0.5
+  photo_chain_weight: 0.0
+  static_loss_weight: 0.5
+  dynamic_loss_weight: 0.5
+  
+  # mask
+  use_precomputed_dymask: true
+  use_taylor_order_mask: true
+
+optim:
+  alternating_optim: false
+  batch_size: 4096
+  flow_lr_decay_list:
+  - 200
+  - 10000
+  - 17500
+  - 25000
+  - 35000
+  - 65000
+  flow_lr_decay_rate: 0.2
+
+  sigma_cont_lr_decay_list:
+  - 30000
+  - 40000
+  - 50000
+  - 60000
+  sigma_cont_lr_decay_rate: 0.1
+
+  # total iterations
+  n_iters: 70000
+  
+  # static initialization
+  n_static_iters: 5000
+
+  # begin
+  sf_begin: 0
+  gr_begin: 1000
+  dsj_begin: 500
+  phys_begin: 1000
+
+render_path: true
+render_test: true
+
+systems:
+  add_timestamp: false
+  basedir: logs/ndvs_24f/
+  vis_every: 5000
